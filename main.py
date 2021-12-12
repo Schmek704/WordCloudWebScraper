@@ -82,6 +82,7 @@ def cloud_scrape(url, qty_words):
     plt.savefig("words.jpg")
     image = Image.open('words.jpg')
     image.show()
+    return "words.jpg"
 
 
 # TEST THE FUNCTION
