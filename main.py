@@ -66,15 +66,15 @@ def cloud_scrape(url, qty_words):
 
     # create the word cloud object
     cloud = WordCloud(
-        width=800,
-        height=800,
+        width=2000,
+        height=1000,
         background_color='white',
         normalize_plurals=True,
         stopwords=stopwords,
         max_words=qty_words,
         min_font_size=10).generate(comment_words)
     # plot the WordCloud image
-    plt.figure(figsize=(20, 10), facecolor='k')
+    plt.figure(figsize=(20, 10), facecolor=None)
     plt.imshow(cloud)
     plt.axis("off")
     plt.tight_layout(pad=0)
