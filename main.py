@@ -94,3 +94,4 @@ url_input = st.text_input("Please copy and paste the complete web URL form your 
 qty_words_input = st.number_input("How many words would you like to see in your word cloud?  ", min_value=10)
 if url_input:
     cloud_scrape(url_input, qty_words_input)
+
