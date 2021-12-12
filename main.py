@@ -80,9 +80,9 @@ def cloud_scrape(url, qty_words):
     plt.tight_layout(pad=0)
     # Save and display the word cloud in a new window
     plt.savefig("words.jpg")
-    image = Image.open('words.jpg')
-    image.show()
-    return "words.jpg"
+    image = Image.open("words.jpg")
+    st.write(image)
+
 
 
 # TEST THE FUNCTION
@@ -92,6 +92,6 @@ st.title("Web Scraping Word Cloud Generator")
 url_input = st.text_input("Please copy and paste the complete web URL form your address bar", value="https://")
 # set word cloud word quantity
 qty_words_input = st.number_input("How many words would you like to see in your word cloud?  ", min_value=10)
-if url_input:
+if len(url_input) > 10:
     cloud_scrape(url_input, qty_words_input)
-
+    st.write()
