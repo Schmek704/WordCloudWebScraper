@@ -22,7 +22,7 @@ from PIL import Image
 def cloud_scrape(url, qty_words):
     # using the url, use the requests library to extract the webpage,
     # receiving that data as the html code from the page
-    if len(url) < 10:
+    if len(url) <= 12:
         return st.write("Please make sure the address is the complete web URL from your browser's address bar!")
     page = requests.get(url)
     # create a beautiful soup object using the request response above, find all sections tagged with 'p'
@@ -30,7 +30,7 @@ def cloud_scrape(url, qty_words):
     results = soup.find_all('p')
     # check to see if results from web page may not have enough values to return for the word cloud
     if len(results) == 0:
-        return print("This webpage may not allow web scraping, or there is not enough text to scrape on this page")
+        return st.write("This webpage may not allow web scraping, or there is not enough text to scrape on this page")
 
     # Create a Function to remove html tags from the soup object
     def remove_tags(html):
@@ -74,7 +74,7 @@ def cloud_scrape(url, qty_words):
         max_words=qty_words,
         min_font_size=10).generate(comment_words)
     # plot the WordCloud image
-    plt.figure(figsize=(5, 5), facecolor=None)
+    plt.figure(figsize=(20, 10), facecolor='k')
     plt.imshow(cloud)
     plt.axis("off")
     plt.tight_layout(pad=0)
@@ -88,9 +88,8 @@ def cloud_scrape(url, qty_words):
 # create a variable that will be the target of the web scrape request
 # user will be asked to input the web page address and any one word to specifically ignore
 st.title("Web Scraping Word Cloud Generator")
-st.write("Function available publicly by Dan McKeon")
-st.write("Join our community at www.Infohound.us")
-url_input = st.text_input("Please copy and paste the complete web URL form your address bar", value="https://")
+st.write("Function made available publicly by Dan McKeon. Join our community at https://www.Infohound.us")
+url_input = st.text_input("Please copy and paste the complete web URL from your address bar", value="https://")
 # set word cloud word quantity
 qty_words_input = st.number_input("How many words would you like to see in your word cloud?  ", min_value=10)
 if url_input:
