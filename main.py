@@ -81,8 +81,7 @@ def cloud_scrape(url, qty_words):
     # Save and display the word cloud in a new window
     plt.savefig("words.jpg")
     image = Image.open("words.jpg")
-    st.write(image)
-
+    st.image(image, caption=url)
 
 
 # TEST THE FUNCTION
@@ -94,4 +93,4 @@ url_input = st.text_input("Please copy and paste the complete web URL form your 
 qty_words_input = st.number_input("How many words would you like to see in your word cloud?  ", min_value=10)
 if len(url_input) > 10:
     cloud_scrape(url_input, qty_words_input)
-    st.write()
+
