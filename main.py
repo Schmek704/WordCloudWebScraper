@@ -22,13 +22,20 @@ from PIL import Image
 def cloud_scrape(url, qty_words):
     # using the url, use the requests library to extract the webpage,
     # receiving that data as the html code from the page
+    # check input for errors
+    # check to see if url is too short
     if len(url) <= 12:
         return st.write("Please make sure the address is the complete web URL from your browser's address bar!")
-    page = requests.get(url)
-    # create a beautiful soup object using the request response above, find all sections tagged with 'p'
+    # check for any other errors that may present when trying to pull webpage, if no errors then create request
+    try:
+        page = requests.get(url)
+    except:
+        return st.write("Please check the web address, we are having issues finding that destination")
+    # create a beautiful soup object using the request response above
     soup = BeautifulSoup(page.content, "html.parser")
+    # look for 'p' tags to check for text
     results = soup.find_all('p')
-    # check to see if results from web page may not have enough values to return for the word cloud
+    # check to see if results from web page have enough values to return for the word cloud
     if len(results) == 0:
         return st.write("This webpage may not allow web scraping, or there is not enough text to scrape on this page")
 
@@ -68,7 +75,8 @@ def cloud_scrape(url, qty_words):
     cloud = WordCloud(
         width=2000,
         height=1000,
-        background_color='white',
+        background_color='black',
+        colormap='Spectral',
         normalize_plurals=True,
         stopwords=stopwords,
         max_words=qty_words,
@@ -88,10 +96,9 @@ def cloud_scrape(url, qty_words):
 # create a variable that will be the target of the web scrape request
 # user will be asked to input the web page address and any one word to specifically ignore
 st.title("Web Scraping Word Cloud Generator")
-st.write("Function made available publicly by Dan McKeon. Join our community at https://www.Infohound.us")
+st.write("This Beta function is made available publicly by Dan McKeon. Join our community at https://www.Infohound.us")
 url_input = st.text_input("Please copy and paste the complete web URL from your address bar", value="https://")
 # set word cloud word quantity
 qty_words_input = st.number_input("How many words would you like to see in your word cloud?  ", min_value=10)
 if url_input:
     cloud_scrape(url_input, qty_words_input)
-
