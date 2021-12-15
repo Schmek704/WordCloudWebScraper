@@ -6,9 +6,9 @@
 # streamlit is the web app designer
 import streamlit as st
 
-# Beautiful Soup module helps in web scrapping
+# Beautiful Soup module for web scraping
 from bs4 import BeautifulSoup
-# Requests module sends http requests to a web page
+# Requests module to send http request
 import requests
 # WordCloud library
 from wordcloud import WordCloud, STOPWORDS
@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
-# create a function to scrape a web page and create a variable word cloud based on the 'p' sections text
+# create a function to scrape a web page and create a dynamic word cloud based on the web page text
 def cloud_scrape(url, qty_words):
     # using the url, use the requests library to extract the webpage,
     # receiving that data as the html code from the page
