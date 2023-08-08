@@ -37,7 +37,7 @@ def cloud_scrape(url, qty_words):
     results = soup.find_all('p')
     # check to see if results from web page have enough values to return for the word cloud
     if len(results) == 0:
-        return st.header("\n\n\nThis page may not allow scraping, or there is not enough text to scrape on this page")
+        return st.header("\n\n\nThis page may not allow scraping, the page is comprised of images only, or there is not enough text to scrape on this page")
 
     # Create a Function to remove html tags from the soup object
     def remove_tags(html):
