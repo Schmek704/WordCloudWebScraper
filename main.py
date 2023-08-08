@@ -99,6 +99,6 @@ st.write("This function is made available publicly by Dan McKeon.")
 st.write("Visit my LinkedIn profile at https://www.linkedin.com/in/dan-mckeon-704/")
 url_input = st.text_input("Please copy and paste the complete web URL from your address bar", value="https://")
 # set word cloud word quantity
-qty_words_input = st.number_input("How many words would you like to see in your word cloud?  ", min_value=10)
+qty_words_input = st.number_input("How many words would you like to see in your word cloud?  ", min_value=100)
 if url_input:
     cloud_scrape(url_input, qty_words_input)
